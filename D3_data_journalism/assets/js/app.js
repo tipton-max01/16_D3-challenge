@@ -31,6 +31,17 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     var poverty = data.map(data => data.poverty);
     console.log("poverty", poverty);
 
+    // scale y to chart height
+    var yScale = d3.scaleLinear()
+    .domain([0, d3.max(healthcare)])
+    .range([chartHeight, 0]);
+
+    // scale x to chart width
+    var xScale = d3.scaleBand()
+    .domain(poverty)
+    .range([0, chartWidth])
+    .padding(0.05);
+
     // create axes
     var yAxis = d3.axisLeft(yScale);
     var xAxis = d3.axisBottom(xScale);
