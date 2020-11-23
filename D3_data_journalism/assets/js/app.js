@@ -41,13 +41,12 @@ d3.csv("./assets/data/data.csv").then(function(data) {
         range([0, width]);
 
     var yScale = d3.scaleLinear()
-    .domain([0, d3.max(healthcare)])
-    .range([height, 0]);
+        .domain([0, d3.max(healthcare)])
+        .range([height, 0]);
 
-
-    // create axes
-    var yAxis = d3.axisLeft(yScale);
+    // Step 3: Create axis functions
     var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
 
     // // Add X axis
     xAxis = d3.scaleLinear()
