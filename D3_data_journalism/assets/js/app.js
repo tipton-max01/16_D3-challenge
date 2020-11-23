@@ -38,7 +38,7 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     // Step 2: Create scale functions
     var xScale = d3.scaleLinear()
         .domain([20, d3.max(poverty)])
-        range([0, width]);
+        .range([0, width]);
 
     var yScale = d3.scaleLinear()
         .domain([0, d3.max(healthcare)])
@@ -48,47 +48,28 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
 
-    // // Add X axis
-    xAxis = d3.scaleLinear()
-        .domain([0, 4000])
-        .range([ 0, width ]);
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(xAxis));
+    // Step 4: Append Axes to the chart
+    chartGroup.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxis);
+        
+    chartGroup.append("g")
+        .call(yAxis);
 
-    // // Add Y axis
-    yAxis = d3.scaleLinear()
-        .domain([0, 500000])
-        .range([ height, 0]);
-    svg.append("g")
-        .call(d3.axisLeft(yAxis));
-
-    // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
-    // Its opacity is set to 0: we don't see it by default.
-    // var toolTip = d3.select("scatter")
-    //     .append("div")
-    //     .style("opacity", 50)
-    //     .attr("class", "tooltip")
-    //     .style("background-color", "white")
-    //     .style("border", "solid")
-    //     .style("border-width", "1px")
-    //     .style("border-radius", "5px")
-    //     .style("padding", "10px")
+    // Step 5: Create Circles
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", xScale(poverty))
+    .attr("cy", yScale(healthcare))
+    .attr("r", "15")
+    .attr("fill", "pink")
+    .attr("opacity", ".5");
 
     var toolTip = d3.select("scatter")
     .append("div")
         .attr("class", "tooltip")
-
-    // Add dots
-    svg.append('g')
-        .selectAll("dot")
-        .data(data)
-        .enter()
-        .append("circle")
-            .attr("cx", function (d) { return x(d.poverty); } )
-            .attr("cy", function (d) { return y(d.healthcare); } )
-            .attr("r", 1.5)
-            .style("fill", "#69b3a2")
 
 
 
