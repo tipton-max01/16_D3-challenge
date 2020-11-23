@@ -61,16 +61,16 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     svg.append("g")
         .call(d3.axisLeft(yAxis));
 
-    // // Add dots
-    // svg.append('g')
-    //     .selectAll("dot")
-    //     .data(data)
-    //     .enter()
-    //     .append("circle")
-    //         .attr("cx", function (d) { return x(d.poverty); } )
-    //         .attr("cy", function (d) { return y(d.healthcare); } )
-    //         .attr("r", 1.5)
-    //         .style("fill", "#69b3a2")
+    // Add dots
+    svg.append('g')
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+            .attr("cx", function (d) { return x(d.poverty); } )
+            .attr("cy", function (d) { return y(d.healthcare); } )
+            .attr("r", 1.5)
+            .style("fill", "#69b3a2")
 
     }).catch(function(error) {
             console.log(error);
