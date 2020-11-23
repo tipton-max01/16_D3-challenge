@@ -1,3 +1,4 @@
+
 // @TODO: YOUR CODE HERE!
 
 // set the dimensions and margins of the graph
@@ -63,11 +64,11 @@ d3.csv("./assets/data/data.csv").then(function(data) {
 
     // Step 6: Initialize tool tip
     var toolTip = d3.tip()
-      .attr("class", "tooltip")
-      .offset([80, -60])
-      .html(function(d) {
-        return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
-      });
+        .attr("class", "d3-tip")
+        .offset([80, -100])
+        .html(function(d) {
+            return (`${d.state}<br>Poverty (%): ${d.poverty}<br>Healthcare (%): ${d.healthcare}`)
+        });      
 
     // Step 7: Create tooltip in the chart
     chartGroup.call(toolTip);
