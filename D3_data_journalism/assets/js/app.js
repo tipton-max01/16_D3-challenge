@@ -23,7 +23,6 @@ var svg = d3.select("#scatter")
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-
 // Load data from data.csv
 d3.csv("./assets/data/data.csv").then(function(data) {
 
@@ -36,15 +35,15 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     var poverty = data.map(data => data.poverty);
     console.log("poverty", poverty);
 
-    // scale y to chart height
+    // Step 2: Create scale functions
+    var xScale = d3.scaleLinear()
+        .domain([20, d3.max(poverty)])
+        range([0, width]);
+
     var yScale = d3.scaleLinear()
     .domain([0, d3.max(healthcare)])
     .range([height, 0]);
 
-    // scale x to chart width
-    var xScale = d3.scaleLinear()
-    .domain([0, d3.max(poverty)])
-    .range([0, width]);
 
     // create axes
     var yAxis = d3.axisLeft(yScale);
