@@ -27,15 +27,16 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     //log healthcare list
     var healthcare = data.map(data => data.healthcare);
     console.log("healthcare", healthcare);
+    //log poverty list
     var poverty = data.map(data => data.poverty);
     console.log("poverty", poverty);
 
-}).catch(function(error) {
-    console.log(error);
-});
+    // create axes
+    var yAxis = d3.axisLeft(yScale);
+    var xAxis = d3.axisBottom(xScale);
 
     // // Add X axis
-    // // var x = d3.scaleLinear()
+    // var x = d3.scaleLinear()
     //     .domain([0, 4000])
     //     .range([ 0, width ]);
     // svg.append("g")
@@ -43,7 +44,7 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     //     .call(d3.axisBottom(x));
 
     // // Add Y axis
-    // // var y = d3.scaleLinear()
+    // var y = d3.scaleLinear()
     //     .domain([0, 500000])
     //     .range([ height, 0]);
     // svg.append("g")
@@ -55,9 +56,11 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     //     .data(data)
     //     .enter()
     //     .append("circle")
-    //         .attr("cx", function (d) { return x(d.GrLivArea); } )
-    //         .attr("cy", function (d) { return y(d.SalePrice); } )
+    //         .attr("cx", function (d) { return x(d.poverty); } )
+    //         .attr("cy", function (d) { return y(d.healthcare); } )
     //         .attr("r", 1.5)
-//     //         .style("fill", "#69b3a2")
+    //         .style("fill", "#69b3a2")
 
-// })
+    }).catch(function(error) {
+            console.log(error);
+});
