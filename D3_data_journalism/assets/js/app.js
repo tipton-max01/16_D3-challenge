@@ -27,6 +27,8 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     //log healthcare list
     var healthcare = data.map(data => data.healthcare);
     console.log("healthcare", healthcare);
+    var poverty = data.map(data => data.poverty);
+    console.log("poverty", poverty);
 
 }).catch(function(error) {
     console.log(error);
