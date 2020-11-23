@@ -25,15 +25,16 @@ var chartGroup = svg.append("g")
 
 // Load data from data.csv
 d3.csv("./assets/data/data.csv").then(function(data) {
-
+    data.healthcare = +data.healthcare;
+    data.poverty = +data.poverty;
     console.log(data);
 
-    //log healthcare list
-    var healthcare = data.map(data => data.healthcare);
-    console.log("healthcare", healthcare);
-    //log poverty list
-    var poverty = data.map(data => data.poverty);
-    console.log("poverty", poverty);
+    // //log healthcare list
+    // var healthcare = data.map(data => data.healthcare);
+    // console.log("healthcare", healthcare);
+    // //log poverty list
+    // var poverty = data.map(data => data.poverty);
+    // console.log("poverty", poverty);
 
     // Step 2: Create scale functions
     var xScale = d3.scaleLinear()
@@ -67,13 +68,16 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     .attr("fill", "pink")
     .attr("opacity", ".5");
 
-    var toolTip = d3.select("scatter")
-    .append("div")
-        .attr("class", "tooltip")
+    // Step 6: Initialize tool tip
+    var toolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.rockband}<br>Hair length: ${d.hair_length}<br>Hits: ${d.num_hits}`);
+      });
 
-
-
-// {/* <img src="/static/image.svg"> */}
+    // Step 7: Create tooltip in the chart
+    chartGroup.call(toolTip);
 
 
     }).catch(function(error) {
