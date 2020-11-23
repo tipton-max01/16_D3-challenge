@@ -17,11 +17,11 @@ var height = svgHeight - margin.top - margin.bottom;
 // append the svg object to the body of the page
 var svg = d3.select("#scatter")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
+
+var chartGroup = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 
 // Load data from data.csv
