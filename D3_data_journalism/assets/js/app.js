@@ -47,19 +47,19 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     var xAxis = d3.axisBottom(xScale);
 
     // // Add X axis
-    // var x = d3.scaleLinear()
-    //     .domain([0, 4000])
-    //     .range([ 0, width ]);
-    // svg.append("g")
-    //     .attr("transform", "translate(0," + height + ")")
-    //     .call(d3.axisBottom(x));
+    xAxis = d3.scaleLinear()
+        .domain([0, 4000])
+        .range([ 0, width ]);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xAxis));
 
     // // Add Y axis
-    // var y = d3.scaleLinear()
-    //     .domain([0, 500000])
-    //     .range([ height, 0]);
-    // svg.append("g")
-    //     .call(d3.axisLeft(y));
+    yAxis = d3.scaleLinear()
+        .domain([0, 500000])
+        .range([ height, 0]);
+    svg.append("g")
+        .call(d3.axisLeft(yAxis));
 
     // // Add dots
     // svg.append('g')
