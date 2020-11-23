@@ -34,12 +34,12 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     // scale y to chart height
     var yScale = d3.scaleLinear()
     .domain([0, d3.max(healthcare)])
-    .range([chartHeight, 0]);
+    .range([height, 0]);
 
     // scale x to chart width
     var xScale = d3.scaleBand()
     .domain(poverty)
-    .range([0, chartWidth])
+    .range([0, width])
     .padding(0.05);
 
     // create axes
