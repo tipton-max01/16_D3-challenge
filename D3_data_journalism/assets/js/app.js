@@ -29,20 +29,13 @@ d3.csv("./assets/data/data.csv").then(function(data) {
     data.poverty = +data.poverty;
     console.log(data);
 
-    // //log healthcare list
-    // var healthcare = data.map(data => data.healthcare);
-    // console.log("healthcare", healthcare);
-    // //log poverty list
-    // var poverty = data.map(data => data.poverty);
-    // console.log("poverty", poverty);
-
     // Step 2: Create scale functions
     var xScale = d3.scaleLinear()
-        .domain([20, d3.max(poverty)])
+        .domain([20, d3.max(data, d => d.poverty)])
         .range([0, width]);
 
     var yScale = d3.scaleLinear()
-        .domain([0, d3.max(healthcare)])
+        .domain([0, d3.max(data, d => d.healthcare)])
         .range([height, 0]);
 
     // Step 3: Create axis functions
